@@ -31,6 +31,15 @@ export const api = {
         404: errorSchemas.notFound,
       },
     },
+    create: {
+      method: 'POST' as const,
+      path: '/api/events',
+      body: insertEventSchema,
+      responses: {
+        201: z.custom<typeof events.$inferSelect>(),
+        400: errorSchemas.validation,
+      },
+    },
   },
   sponsors: {
     list: {

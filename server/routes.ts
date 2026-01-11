@@ -30,6 +30,27 @@ export async function registerRoutes(
     res.json(sponsors);
   });
 
+  app.post(api.events.create.path, async (req, res) => {
+    try {
+      const body = req.body;
+      const eventData = {
+        title: body.title,
+        description: body.description,
+        date: new Date(body.date),
+        location: body.location,
+        imageUrl: body.imageUrl || null,
+        externalUrl: body.externalUrl || null,
+      };
+      const event = await storage.createEvent(eventData);
+      res.status(201).json(event);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: error.errors[0].message });
+      }
+      return res.status(500).json({ message: 'Failed to create event' });
+    }
+  });
+
   // Seed database on startup
   await storage.seed();
 

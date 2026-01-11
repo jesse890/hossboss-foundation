@@ -37,11 +37,25 @@ export function registerObjectStorageRoutes(app: Express): void {
    */
   app.post("/api/uploads/request-url", async (req, res) => {
     try {
-      const { name, size, contentType } = req.body;
+      const { name, size, contentType } = req.body || {};
 
       if (!name) {
         return res.status(400).json({
           error: "Missing required field: name",
+        });
+      }
+
+      const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+      if (contentType && !allowedTypes.includes(contentType)) {
+        return res.status(400).json({
+          error: "Only image files are allowed (JPEG, PNG, GIF, WebP)",
+        });
+      }
+
+      const maxSize = 10 * 1024 * 1024;
+      if (size && size > maxSize) {
+        return res.status(400).json({
+          error: "File size must be less than 10MB",
         });
       }
 

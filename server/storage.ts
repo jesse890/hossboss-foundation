@@ -12,6 +12,7 @@ import { eq } from "drizzle-orm";
 export interface IStorage {
   getEvents(): Promise<Event[]>;
   getEvent(id: number): Promise<Event | undefined>;
+  createEvent(event: InsertEvent): Promise<Event>;
   getSponsors(): Promise<Sponsor[]>;
   seed(): Promise<void>;
 }
@@ -24,6 +25,11 @@ export class DatabaseStorage implements IStorage {
   async getEvent(id: number): Promise<Event | undefined> {
     const [event] = await db.select().from(events).where(eq(events.id, id));
     return event;
+  }
+
+  async createEvent(event: InsertEvent): Promise<Event> {
+    const [newEvent] = await db.insert(events).values(event).returning();
+    return newEvent;
   }
 
   async getSponsors(): Promise<Sponsor[]> {

@@ -1,6 +1,7 @@
 import { useEvents } from "@/hooks/use-events";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Button } from "@/components/ui/button";
+import { AddEventDialog } from "@/components/AddEventDialog";
 import { Calendar, MapPin, Loader2 } from "lucide-react";
 import { format } from "date-fns";
 import { motion } from "framer-motion";
@@ -36,6 +37,9 @@ export default function Events() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
+        <div className="flex justify-end mb-6">
+          <AddEventDialog />
+        </div>
         <div className="grid gap-8">
           {events?.length === 0 ? (
             <div className="bg-white rounded-2xl p-12 text-center shadow-lg">
