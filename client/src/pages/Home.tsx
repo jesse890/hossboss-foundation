@@ -32,16 +32,16 @@ export default function Home() {
             </div>
             <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 leading-tight">
               Honoring Service through <br/>
-              <span className="text-accent">Action & Support</span>
+              <span className="text-accent">Jeff Conord Memorial Classic</span>
             </h1>
             <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto mb-10 font-light">
-              Dedicated to Veterans' mental health and education in partnership with MCVET. 
+              Supporting Veterans' mental health and education in partnership with MCVET. 
               Continuing the legacy of Captain Jeffery Howard Conord.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/events">
                 <Button size="lg" className="bg-accent hover:bg-accent/90 text-primary font-bold text-lg h-14 px-8 rounded-full shadow-lg shadow-accent/20">
-                  Upcoming Events
+                  Register for JCMC '25
                 </Button>
               </Link>
               <Link href="/about">
@@ -158,15 +158,15 @@ export default function Home() {
                 <div className="bg-accent text-primary font-bold text-xs px-3 py-1 rounded-full inline-block w-fit mb-4">
                   Signature Event
                 </div>
-                <h3 className="text-3xl font-display font-bold mb-2">9th Annual Golf Tournament</h3>
+                <h3 className="text-3xl font-display font-bold mb-2">Jeff Conord Memorial Classic</h3>
                 <p className="text-white/80 mb-6 line-clamp-2">
-                  Join us for a day on the greens to support veteran mental health programs.
+                  Join us for our signature event on the greens to support veteran mental health programs.
                 </p>
-                <Link href="/events">
+                <a href="https://www.jcmc25.com" target="_blank" rel="noopener noreferrer" className="w-full">
                   <Button className="w-full bg-white text-primary hover:bg-white/90 font-bold">
-                    Register Now
+                    Register at JCMC25.com
                   </Button>
-                </Link>
+                </a>
               </div>
             </div>
 

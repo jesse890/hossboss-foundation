@@ -90,9 +90,17 @@ export default function Events() {
                   </div>
                   
                   <div className="flex items-center gap-4">
-                    <Button className="bg-primary text-white hover:bg-primary/90 shadow-md">
-                      Register Now
-                    </Button>
+                    {event.externalUrl ? (
+                      <a href={event.externalUrl} target="_blank" rel="noopener noreferrer">
+                        <Button className="bg-primary text-white hover:bg-primary/90 shadow-md">
+                          Register / Details
+                        </Button>
+                      </a>
+                    ) : (
+                      <Button className="bg-primary text-white hover:bg-primary/90 shadow-md">
+                        Register Now
+                      </Button>
+                    )}
                     <Button variant="outline" className="border-primary/20 hover:border-primary text-primary">
                       Learn More
                     </Button>

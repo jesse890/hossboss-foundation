@@ -30,7 +30,7 @@ export default function About() {
               Through this strategic partnership, we're able to direct funds and resources where they are needed most—providing 
               comprehensive support systems for homeless veterans and other veterans in need.
             </p>
-            <Button variant="outline">Learn more about MCVET</Button>
+            <Button variant="outline" onClick={() => window.open('https://www.mcvet.org', '_blank')}>Learn more about MCVET</Button>
           </div>
           <div className="bg-secondary/50 p-8 rounded-2xl">
             <h3 className="text-xl font-bold text-primary mb-6">What We Support</h3>
