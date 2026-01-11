@@ -36,8 +36,8 @@ export class DatabaseStorage implements IStorage {
       // Seed Events
       await db.insert(events).values([
         {
-          title: "8th Annual Captain Jeffery Howard Conord Golf Tournament",
-          description: "Join us for our signature fundraising event. A day of golf, camaraderie, and supporting Veterans' mental health. All proceeds align with MCVET.",
+          title: "Jeff Conord Memorial Classic",
+          description: "Join us for our signature fundraising event, the Jeff Conord Memorial Classic. A day of golf, camaraderie, and supporting Veterans' mental health. All proceeds align with MCVET.",
           date: new Date("2025-06-15T09:00:00"), // Future date example
           location: "Maryland National Golf Club, Middletown, MD",
           imageUrl: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b", // Golf course placeholder
