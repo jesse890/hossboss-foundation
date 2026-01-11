@@ -9,6 +9,7 @@ export const events = pgTable("events", {
   date: timestamp("date").notNull(),
   location: text("location").notNull(),
   imageUrl: text("image_url"),
+  externalUrl: text("external_url"),
 });
 
 export const sponsors = pgTable("sponsors", {

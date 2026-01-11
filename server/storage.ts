@@ -41,6 +41,7 @@ export class DatabaseStorage implements IStorage {
           date: new Date("2025-06-15T09:00:00"), // Future date example
           location: "Maryland National Golf Club, Middletown, MD",
           imageUrl: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b", // Golf course placeholder
+          externalUrl: "https://www.jcmc25.com",
         },
         {
           title: "Veterans Day Gala",
