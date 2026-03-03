@@ -81,7 +81,9 @@ export default function Events() {
                       </div>
                       <div className="flex items-center gap-1.5">
                         <MapPin className="w-4 h-4 text-accent" />
-                        {event.location}
+                        <a href="https://www.golfbullrun.com/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors underline underline-offset-2" data-testid={`link-location-${event.id}`}>
+                          {event.location}
+                        </a>
                       </div>
                     </div>
                     
@@ -95,19 +97,16 @@ export default function Events() {
                   
                   <div className="flex items-center gap-4">
                     {event.externalUrl ? (
-                      <a href={event.externalUrl} target="_blank" rel="noopener noreferrer">
-                        <Button className="bg-primary text-white hover:bg-primary/90 shadow-md">
-                          Register / Details
+                      <a href={event.externalUrl} target="_blank" rel="noopener noreferrer" data-testid={`link-register-${event.id}`}>
+                        <Button className="bg-accent text-primary hover:bg-accent/90 font-bold shadow-md">
+                          Register Now
                         </Button>
                       </a>
                     ) : (
                       <Button className="bg-primary text-white hover:bg-primary/90 shadow-md">
-                        Register Now
+                        Learn More
                       </Button>
                     )}
-                    <Button variant="outline" className="border-primary/20 hover:border-primary text-primary">
-                      Learn More
-                    </Button>
                   </div>
                 </div>
               </motion.div>

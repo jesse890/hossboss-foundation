@@ -1,0 +1,36 @@
+Fix the Events page data and UI.
+
+1) REMOVE the "Veteran's Day Gala" event entirely so it does not appear anywhere on the Events page.
+- IMPORTANT: If events are stored in the database, delete this record from the events table (or ensure it is filtered out by default).
+- If events are stored in a static file (JSON/TS), remove it there.
+
+2) UPDATE the golf tournament event to the correct 2026 details and ensure the card displays them:
+
+Title:
+"9th Annual Captain Jeffery Howard Conord Memorial Classic"
+
+Date:
+"Friday, June 19, 2026"
+
+Times:
+"Check-in: 7:30 AM"
+"Shotgun Start: 9:00 AM"
+
+Location:
+"Bull Run Country Club, Haymarket, VA"
+Add a clickable location link to: https://www.golfbullrun.com/
+
+Description (replace current text with this):
+"Join us for our signature fundraising event at the beautiful Bull Run Country Club. The event includes a 4-person scramble, fundraising raffle and prizes, Chick-fil-A lunch delivered on course plus a hot dog station, beverages throughout the round, and an awards reception with dinner and drinks afterward. Check-in starts at 7:30am for a 9am shotgun start. Please arrive early to register, purchase mulligans and raffle tickets (cash/Venmo/PayPal accepted), and practice before the round begins (included). All proceeds benefit MCVET in Jeff’s name. Last year we donated over $9,000; eight-year total over $110,000. Goal: reach $200,000."
+
+3) REGISTER BUTTON:
+Ensure the "Register Now" button links to this URL and opens in a new tab:
+https://app.eventcaddy.com/events/cpt-jeffrey-howard-conord-memorial-classic-2026
+Use target="_blank" and rel="noopener noreferrer".
+
+4) DATA SOURCE CHECK:
+If the Events page is pulling events from a database, update the production DB so only the updated golf tournament appears and the gala is removed.
+If the Events page is pulling from an API endpoint, update the endpoint output accordingly.
+If it is from seed data/migrations, update the seed and re-run it for production.
+
+5) After changes, republish and verify that the Events page shows only the updated 9th Annual golf tournament event and the Register button goes to EventCaddy.

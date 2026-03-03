@@ -55,9 +55,9 @@ export class DatabaseStorage implements IStorage {
       await db.insert(events).values([
         {
           title: "9th Annual Captain Jeffery Howard Conord Memorial Classic",
-          description: "Join us for our signature fundraising event at Bull Run Country Club. 4-person scramble, fundraising raffle and prizes, Chick-fil-A lunch delivered on course plus hot dog station, beverages throughout the round, and an awards reception with dinner and drinks afterward. Please arrive early to register and purchase mulligans and raffle tickets (cash/Venmo/PayPal accepted). All proceeds benefit MCVET in Jeff's name. Last year we donated $9,000; eight-year total over $110,000. Goal: reach $200,000.",
+          description: "Join us for our signature fundraising event at the beautiful Bull Run Country Club. The event includes a 4-person scramble, fundraising raffle and prizes, Chick-fil-A lunch delivered on course plus a hot dog station, beverages throughout the round, and an awards reception with dinner and drinks afterward. Check-in starts at 7:30 AM for a 9:00 AM shotgun start. Please arrive early to register, purchase mulligans and raffle tickets (cash/Venmo/PayPal accepted), and practice before the round (included). All proceeds benefit MCVET — Maryland Center for Veterans Education and Training — in Jeff's name.",
           date: new Date("2026-06-19T09:00:00"),
-          location: "Bull Run Country Club",
+          location: "Bull Run Country Club, Haymarket, VA",
           imageUrl: "/assets/IMG_4277_1768183625522.jpeg",
           externalUrl: "https://app.eventcaddy.com/events/cpt-jeffrey-howard-conord-memorial-classic-2026",
         },
