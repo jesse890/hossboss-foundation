@@ -54,8 +54,8 @@ export class DatabaseStorage implements IStorage {
       // Seed Events
       await db.insert(events).values([
         {
-          title: "9th Annual Jeff Conord Memorial Classic",
-          description: "Join us for our signature fundraising event — the Ninth Annual Jeff Conord Memorial Classic. Friday, June 19th, 2026 at Bull Run Country Club, Haymarket VA. 4-person scramble with 9:00 AM shotgun start. Includes Chick-fil-A lunch, beverages, raffle, prizes, and awards reception with dinner. All proceeds benefit MCVET in Jeff's name.",
+          title: "9th Annual Captain Jeffery Howard Conord Memorial Classic",
+          description: "Join us for our signature fundraising event at Bull Run Country Club. 4-person scramble, fundraising raffle and prizes, Chick-fil-A lunch delivered on course plus hot dog station, beverages throughout the round, and an awards reception with dinner and drinks afterward. Please arrive early to register and purchase mulligans and raffle tickets (cash/Venmo/PayPal accepted). All proceeds benefit MCVET in Jeff's name. Last year we donated $9,000; eight-year total over $110,000. Goal: reach $200,000.",
           date: new Date("2026-06-19T09:00:00"),
           location: "Bull Run Country Club",
           imageUrl: "/assets/IMG_4277_1768183625522.jpeg",

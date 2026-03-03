@@ -53,20 +53,21 @@ export default function About() {
 
         <div className="border-t border-border pt-16">
           <h3 className="text-2xl font-display font-bold text-center text-primary mb-8">Our Leadership</h3>
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-             {/* Placeholder for board members */}
-             {[1, 2, 3].map((i) => (
-               <div key={i} className="group">
-                 <div className="w-32 h-32 bg-secondary rounded-full mx-auto mb-4 overflow-hidden">
-                   {/* Avatar placeholder */}
-                   <div className="w-full h-full bg-primary/10 flex items-center justify-center text-primary/30">
-                     <span className="text-4xl">?</span>
-                   </div>
-                 </div>
-                 <h4 className="font-bold text-lg text-primary">Board Member {i}</h4>
-                 <p className="text-sm text-muted-foreground">Title / Position</p>
-               </div>
-             ))}
+          <div className="max-w-xl mx-auto">
+            <ul className="space-y-4">
+              {[
+                { name: "Jesse Kofler", title: "Co-President" },
+                { name: "Jason Dull", title: "Co-President" },
+                { name: "Sean Mykietyn", title: "Treasurer" },
+                { name: "Chris Howard", title: "Advisor" },
+                { name: "Matt Howard", title: "Advisor" },
+              ].map((member) => (
+                <li key={member.name} className="flex items-center justify-between py-3 px-6 bg-secondary/30 rounded-xl border border-border/50" data-testid={`leader-${member.name.toLowerCase().replace(' ', '-')}`}>
+                  <span className="font-bold text-primary text-lg">{member.name}</span>
+                  <span className="text-muted-foreground font-medium">{member.title}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

@@ -1,0 +1,35 @@
+CHANGE #1 (Home page):
+- Replace the broken/empty image placeholder on the Home page (left side “Captain Jeffery Howard Conord” card) with a real photo of Jeff.
+- Add a new image asset in the project (e.g., /public/images/jeff-conord.jpg or similar) and reference it correctly so it loads in production.
+- For now, if you don’t have the actual image file, create a placeholder image reference and clearly tell me the exact filename + folder path so I can upload/replace it.
+
+CHANGE #2 (Events page):
+- Remove the “Gala” event entirely so it does not display anywhere.
+- Update the golf tournament event card to the correct 2026 details:
+  Title: "9th Annual Captain Jeffery Howard Conord Memorial Classic"
+  Date: "Friday, June 19, 2026"
+  Check-in: "7:30 AM"
+  Shotgun Start: "9:00 AM"
+  Location: "Bull Run Country Club, Haymarket, VA"
+  Location link: "https://www.golfbullrun.com/"
+  Description:
+    "Join us for our signature fundraising event at Bull Run Country Club. 4-person scramble, fundraising raffle and prizes, Chick-fil-A lunch delivered on course plus hot dog station, beverages throughout the round, and an awards reception with dinner and drinks afterward. Please arrive early to register and purchase mulligans and raffle tickets (cash/Venmo/PayPal accepted). All proceeds benefit MCVET in Jeff’s name. Last year we donated $9,000; eight-year total over $110,000—help us reach $200,000!"
+  Registration URL (Register Now button):
+    "https://app.eventcaddy.com/events/cpt-jeffrey-howard-conord-memorial-classic-2026"
+
+- IMPORTANT: If the events are stored in a database, update the seed data / migration so production shows the correct events. If events are stored in a JSON/TS file, update that source. Ensure the UI reflects “9th Annual” and the correct date/location/time.
+
+CHANGE #3 (About Us page):
+- Remove the gray circular image placeholders for board members.
+- Replace the “Board Member 1/2/3” section with a clean list of 5 leadership names and titles (text only, no photos):
+  1) Jesse Kofler — Co-President
+  2) Jason Dull — Co-President
+  3) Sean Mykietyn — Treasurer
+  4) Chris Howard — Advisor
+  5) Matt Howard — Advisor
+
+Acceptance checks:
+- Home page Jeff photo loads (no broken image icon).
+- Events page shows ONLY the 9th Annual tournament event with correct details and the Register Now button links to EventCaddy.
+- About Us page shows the 5 names and titles with no image placeholders.
+- Republish when complete and confirm the deployment URL is working.

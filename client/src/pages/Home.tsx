@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/SectionHeader";
 import golfGroupPhoto from "@assets/IMG_4277_1768183625522.jpeg";
+import jeffConordPhoto from "@assets/Jeff_Conord_1772572664422.jpg";
 
 const REGISTRATION_URL = "https://app.eventcaddy.com/events/cpt-jeffrey-howard-conord-memorial-classic-2026";
 
@@ -270,9 +271,10 @@ export default function Home() {
             <div className="relative">
               <div className="absolute -inset-4 bg-accent/20 rounded-2xl -rotate-2" />
               <img 
-                src="https://pixabay.com/get/g3cabd5f25da27e7f180fcdf3ea7a8dda430586a9aeab96d28df3058d49f5973ba300d9a99b05e55809d1482b2baf763c9487154cedb2be2413672ff1b120fe0c_1280.jpg" 
+                src={jeffConordPhoto}
                 alt="Captain Jeffery Howard Conord" 
-                className="relative rounded-xl shadow-2xl w-full aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                className="relative rounded-xl shadow-2xl w-full aspect-[4/5] object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
+                data-testid="img-jeff-conord"
               />
             </div>
             <div>
