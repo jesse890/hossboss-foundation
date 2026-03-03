@@ -6,8 +6,17 @@ import path from "path";
 
 const app = express();
 
+let appReady = false;
+
 app.get("/healthz", (_req, res) => {
   res.status(200).json({ status: "ok" });
+});
+
+app.get("/", (req, res, next) => {
+  if (!appReady) {
+    return res.status(200).send("Hoss Boss Foundation is running");
+  }
+  next();
 });
 
 app.use('/assets', express.static(path.resolve(process.cwd(), 'attached_assets')));
@@ -66,6 +75,18 @@ app.use((req, res, next) => {
   next();
 });
 
+const port = parseInt(process.env.PORT || "5000", 10);
+httpServer.listen(
+  {
+    port,
+    host: "0.0.0.0",
+    reusePort: true,
+  },
+  () => {
+    log(`serving on port ${port}`);
+  },
+);
+
 (async () => {
   try {
     await registerRoutes(httpServer, app);
@@ -85,21 +106,17 @@ app.use((req, res, next) => {
   });
 
   if (process.env.NODE_ENV === "production") {
-    serveStatic(app);
+    try {
+      serveStatic(app);
+    } catch (err) {
+      console.error("Static file serving failed:", err);
+      log(`Warning: Could not serve static files: ${err}`, "startup");
+    }
   } else {
     const { setupVite } = await import("./vite");
     await setupVite(httpServer, app);
   }
 
-  const port = parseInt(process.env.PORT || "5000", 10);
-  httpServer.listen(
-    {
-      port,
-      host: "0.0.0.0",
-      reusePort: true,
-    },
-    () => {
-      log(`serving on port ${port}`);
-    },
-  );
+  appReady = true;
+  log("Application fully initialized");
 })();
