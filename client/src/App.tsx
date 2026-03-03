@@ -11,6 +11,7 @@ import Home from "@/pages/Home";
 import Events from "@/pages/Events";
 import Sponsors from "@/pages/Sponsors";
 import About from "@/pages/About";
+import Golf from "@/pages/Golf";
 import NotFound from "@/pages/not-found";
 
 function ScrollToTop() {
@@ -32,6 +33,7 @@ function Router() {
           <Route path="/events" component={Events} />
           <Route path="/sponsors" component={Sponsors} />
           <Route path="/about" component={About} />
+          <Route path="/golf" component={Golf} />
           <Route component={NotFound} />
         </Switch>
       </main>

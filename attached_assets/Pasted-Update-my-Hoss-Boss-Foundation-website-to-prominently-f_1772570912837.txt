@@ -1,0 +1,55 @@
+Update my Hoss Boss Foundation website to prominently feature our 2026 golf tournament.
+
+Requirements:
+1) Add a primary CTA button labeled "Register for the 2026 Golf Tournament" in the header/nav and on the home page hero section.
+   - Clicking the button should open this link in a new tab:
+   https://app.eventcaddy.com/events/cpt-jeffrey-howard-conord-memorial-classic-2026
+
+2) Add a new section on the home page titled:
+   "Ninth Annual Jeff Conord Memorial Classic — June 19, 2026"
+   Include the following content formatted nicely with headings and bullets:
+   - Friday June 19th, 2026
+   - Bull Run Country Club, Haymarket VA (link to https://www.golfbullrun.com/)
+   - 4-person scramble
+   - Fundraising raffle and prizes
+   - Chick-fil-A lunch delivered on course + hot dog station
+   - Beverages throughout the round
+   - Awards reception with dinner and drinks afterward
+   - Check-in at 7:30am, 9:00am shotgun start
+   - Arrive early to register, purchase mulligans and raffle tickets (cash/venmo/paypal accepted), and practice (included)
+
+3) Add a small "Benefiting" block:
+   "All benefits go to MCVET — Maryland Center for Veterans Education and Training — in Jeff's name."
+   Add a short impact line:
+   "Last year we donated $9,000; eight-year total over $110,000. Goal: reach $200,000."
+
+4) Add a second CTA button under the section:
+   "Register Now"
+   pointing to the same EventCaddy link.
+
+5) Create a placeholder area for photos:
+   - one hero image (golf course/tournament)
+   - 3 smaller images (raffle/prizes, reception, group photo)
+   Use temporary placeholder images and mark them clearly so I can replace them later.
+
+Implementation notes:
+- Do not break existing pages.
+- If the project uses React, add this as a component and include it on the home page.
+- Ensure links are accessible and use rel="noopener noreferrer" for new tab links.
+
+That’s enough for Replit to implement without you hunting through files.
+
+B) Optional: Embed the registration page (only if allowed)
+
+Some event/checkout sites block embedding for security. If Event Caddy allows it, you can embed it on your site.
+
+Embed prompt (only use if you want this)
+Create a new page /route called /golf that includes:
+- The tournament details at the top
+- An embedded registration iframe below using:
+  https://app.eventcaddy.com/events/cpt-jeffrey-howard-conord-memorial-classic-2026
+
+If the iframe is blocked by the browser due to X-Frame-Options or CSP, detect failure and show a message with a button:
+"Open Registration in a New Tab" linking to the registration URL.
+
+If it embe

@@ -3,6 +3,8 @@ import { Menu, X, Heart } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
+const REGISTRATION_URL = "https://app.eventcaddy.com/events/cpt-jeffrey-howard-conord-memorial-classic-2026";
+
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
@@ -30,7 +32,6 @@ export function Navigation() {
             </div>
           </Link>
 
-          {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
             <div className="flex gap-6">
               {links.map((link) => (
@@ -48,23 +49,23 @@ export function Navigation() {
                 </Link>
               ))}
             </div>
-            <Button className="bg-destructive hover:bg-destructive/90 text-white shadow-md hover:shadow-lg transition-all gap-2">
-              <Heart className="w-4 h-4 fill-current" />
-              Donate Now
-            </Button>
+            <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer" data-testid="nav-register-tournament">
+              <Button className="bg-accent hover:bg-accent/90 text-primary font-bold shadow-md hover:shadow-lg transition-all gap-2">
+                Register for 2026 Golf Tournament
+              </Button>
+            </a>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2 rounded-md text-primary hover:bg-secondary transition-colors"
+            data-testid="button-mobile-menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Nav */}
       {isOpen && (
         <div className="md:hidden absolute top-20 left-0 w-full bg-white border-b border-border shadow-xl animate-in slide-in-from-top-5">
           <div className="px-4 py-6 space-y-4">
@@ -80,10 +81,11 @@ export function Navigation() {
                 {link.label}
               </Link>
             ))}
-            <Button className="w-full bg-destructive hover:bg-destructive/90 text-white mt-4 gap-2">
-              <Heart className="w-4 h-4 fill-current" />
-              Donate Now
-            </Button>
+            <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer" className="block" data-testid="mobile-register-tournament">
+              <Button className="w-full bg-accent hover:bg-accent/90 text-primary font-bold mt-4 gap-2">
+                Register for 2026 Golf Tournament
+              </Button>
+            </a>
           </div>
         </div>
       )}

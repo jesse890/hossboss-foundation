@@ -1,19 +1,18 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Trophy, Users, HeartHandshake } from "lucide-react";
+import { ArrowRight, Trophy, Users, HeartHandshake, MapPin, Clock, Calendar, CheckCircle2, ExternalLink } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/SectionHeader";
+import golfGroupPhoto from "@assets/IMG_4277_1768183625522.jpeg";
+
+const REGISTRATION_URL = "https://app.eventcaddy.com/events/cpt-jeffrey-howard-conord-memorial-classic-2026";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-primary">
-        {/* Background Overlay */}
         <div className="absolute inset-0 z-0">
-          {/* American Flag aesthetic overlay */}
           <div className="absolute inset-0 bg-primary/90 z-10 mix-blend-multiply" />
-          {/* golf course scenic */}
           <img 
             src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1920&q=80" 
             alt="Golf Course Hero" 
@@ -39,11 +38,11 @@ export default function Home() {
               Continuing the legacy of Captain Jeffery Howard Conord.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/events">
+              <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer" data-testid="hero-register-tournament">
                 <Button size="lg" className="bg-accent hover:bg-accent/90 text-primary font-bold text-lg h-14 px-8 rounded-full shadow-lg shadow-accent/20">
-                  Register for JCMC '25
+                  Register for the 2026 Golf Tournament
                 </Button>
-              </Link>
+              </a>
               <Link href="/about">
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 font-semibold text-lg h-14 px-8 rounded-full">
                   Our Mission
@@ -53,7 +52,6 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
         <motion.div 
           className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50"
           animate={{ y: [0, 10, 0] }}
@@ -65,21 +63,20 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Impact Stats */}
       <section className="py-20 bg-white relative -mt-20 z-30 mx-4 md:mx-auto max-w-7xl rounded-2xl shadow-xl border border-border/50">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center px-8">
           <div className="p-6">
             <div className="w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center mx-auto mb-6 text-primary">
               <HeartHandshake className="w-8 h-8" />
             </div>
-            <h3 className="text-4xl font-bold text-primary mb-2">$120k+</h3>
+            <h3 className="text-4xl font-bold text-primary mb-2" data-testid="text-total-raised">$110k+</h3>
             <p className="text-muted-foreground font-medium">Raised for Veterans</p>
           </div>
           <div className="p-6 border-y md:border-y-0 md:border-x border-border/50">
             <div className="w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center mx-auto mb-6 text-primary">
               <Trophy className="w-8 h-8" />
             </div>
-            <h3 className="text-4xl font-bold text-primary mb-2">8 Years</h3>
+            <h3 className="text-4xl font-bold text-primary mb-2">9 Years</h3>
             <p className="text-muted-foreground font-medium">Annual Golf Tournament</p>
           </div>
           <div className="p-6">
@@ -92,13 +89,186 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Dedication Section */}
+      <section className="py-24 bg-white" data-testid="section-tournament-details">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center gap-2 text-accent font-bold tracking-wider uppercase text-sm mb-4">
+              <div className="w-8 h-0.5 bg-accent" />
+              Signature Event
+              <div className="w-8 h-0.5 bg-accent" />
+            </div>
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-4" data-testid="text-tournament-title">
+              Ninth Annual Jeff Conord Memorial Classic
+            </h2>
+            <p className="text-2xl text-accent font-semibold" data-testid="text-tournament-date">
+              June 19, 2026
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="bg-secondary/30 rounded-2xl p-8 border border-border/50">
+                <h3 className="text-2xl font-display font-bold text-primary mb-6">Tournament Details</h3>
+                
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <Calendar className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-primary">Friday, June 19th, 2026</p>
+                      <p className="text-muted-foreground text-sm">Check-in at 7:30 AM &middot; 9:00 AM Shotgun Start</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <MapPin className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-primary">
+                        <a href="https://www.golfbullrun.com/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors underline underline-offset-2" data-testid="link-bull-run">
+                          Bull Run Country Club
+                        </a>
+                      </p>
+                      <p className="text-muted-foreground text-sm">Haymarket, VA</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <Trophy className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                    <p className="font-semibold text-primary">4-Person Scramble</p>
+                  </div>
+                </div>
+
+                <div className="border-t border-border/50 mt-6 pt-6">
+                  <h4 className="font-semibold text-primary mb-4">What's Included</h4>
+                  <ul className="space-y-3">
+                    {[
+                      "Fundraising raffle and prizes",
+                      "Chick-fil-A lunch delivered on course + hot dog station",
+                      "Beverages throughout the round",
+                      "Awards reception with dinner and drinks afterward",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <CheckCircle2 className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                        <span className="text-muted-foreground">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="border-t border-border/50 mt-6 pt-6">
+                  <div className="flex items-start gap-3">
+                    <Clock className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                    <p className="text-muted-foreground">
+                      <span className="font-semibold text-primary">Arrive early</span> to register, purchase mulligans and raffle tickets (cash/Venmo/PayPal accepted), and practice on the range (included).
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8">
+                <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer" data-testid="button-register-tournament">
+                  <Button size="lg" className="w-full bg-accent hover:bg-accent/90 text-primary font-bold text-lg h-14 rounded-full shadow-lg shadow-accent/20 gap-2">
+                    Register Now <ExternalLink className="w-5 h-5" />
+                  </Button>
+                </a>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="space-y-6"
+            >
+              <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3]">
+                <img 
+                  src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&q=80" 
+                  alt="Golf course at Bull Run Country Club — placeholder, replace with tournament hero photo"
+                  className="w-full h-full object-cover"
+                  data-testid="img-tournament-hero"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                  <span className="text-white/70 text-xs italic">Placeholder — replace with tournament hero photo</span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-4">
+                <div className="relative rounded-xl overflow-hidden shadow-md aspect-square">
+                  <img 
+                    src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400&q=80" 
+                    alt="Raffle and prizes — placeholder"
+                    className="w-full h-full object-cover"
+                    data-testid="img-raffle-placeholder"
+                  />
+                  <div className="absolute inset-0 bg-black/30 flex items-end p-2">
+                    <span className="text-white text-[10px] italic">Placeholder: Raffle/Prizes</span>
+                  </div>
+                </div>
+                <div className="relative rounded-xl overflow-hidden shadow-md aspect-square">
+                  <img 
+                    src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" 
+                    alt="Awards reception — placeholder"
+                    className="w-full h-full object-cover"
+                    data-testid="img-reception-placeholder"
+                  />
+                  <div className="absolute inset-0 bg-black/30 flex items-end p-2">
+                    <span className="text-white text-[10px] italic">Placeholder: Reception</span>
+                  </div>
+                </div>
+                <div className="relative rounded-xl overflow-hidden shadow-md aspect-square">
+                  <img 
+                    src={golfGroupPhoto}
+                    alt="Group photo from previous tournament"
+                    className="w-full h-full object-cover"
+                    data-testid="img-group-photo"
+                  />
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-primary" data-testid="section-benefiting">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="text-accent font-bold tracking-wider uppercase text-sm mb-4">Benefiting</p>
+            <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-4" data-testid="text-mcvet-benefit">
+              All benefits go to MCVET — Maryland Center for Veterans Education and Training — in Jeff's name.
+            </h3>
+            <div className="bg-white/10 rounded-xl p-6 mt-8 border border-white/20">
+              <p className="text-white/90 text-lg leading-relaxed" data-testid="text-impact">
+                Last year we donated <span className="font-bold text-accent">$9,000</span>; eight-year total over <span className="font-bold text-accent">$110,000</span>.
+              </p>
+              <p className="text-white text-xl font-display font-bold mt-3">
+                Goal: reach <span className="text-accent">$200,000</span>.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       <section className="py-24 bg-secondary/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative">
               <div className="absolute -inset-4 bg-accent/20 rounded-2xl -rotate-2" />
-              {/* military portrait placeholder */}
               <img 
                 src="https://pixabay.com/get/g3cabd5f25da27e7f180fcdf3ea7a8dda430586a9aeab96d28df3058d49f5973ba300d9a99b05e55809d1482b2baf763c9487154cedb2be2413672ff1b120fe0c_1280.jpg" 
                 alt="Captain Jeffery Howard Conord" 
@@ -129,7 +299,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Upcoming Events Preview */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-end mb-12">
@@ -145,26 +314,24 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Featured Event Card */}
             <div className="group relative overflow-hidden rounded-2xl bg-primary text-white shadow-xl">
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
-              {/* golf tournament action shot */}
               <img 
-                src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&q=80" 
-                alt="Annual Golf Tournament" 
+                src={golfGroupPhoto}
+                alt="Jeff Conord Memorial Classic"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="relative z-20 p-8 h-96 flex flex-col justify-end">
                 <div className="bg-accent text-primary font-bold text-xs px-3 py-1 rounded-full inline-block w-fit mb-4">
                   Signature Event
                 </div>
-                <h3 className="text-3xl font-display font-bold mb-2">Jeff Conord Memorial Classic</h3>
+                <h3 className="text-3xl font-display font-bold mb-2">9th Annual Jeff Conord Memorial Classic</h3>
                 <p className="text-white/80 mb-6 line-clamp-2">
-                  Join us for our signature event on the greens to support veteran mental health programs.
+                  June 19, 2026 at Bull Run Country Club. Join us on the greens to support veteran mental health programs.
                 </p>
-                <a href="https://www.jcmc25.com" target="_blank" rel="noopener noreferrer" className="w-full">
+                <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer" className="w-full" data-testid="link-register-event-card">
                   <Button className="w-full bg-white text-primary hover:bg-white/90 font-bold">
-                    Register at JCMC25.com
+                    Register Now
                   </Button>
                 </a>
               </div>

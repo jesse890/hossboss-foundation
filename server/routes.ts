@@ -51,6 +51,31 @@ export async function registerRoutes(
     }
   });
 
+  app.patch("/api/events/:id", async (req, res) => {
+    try {
+      const id = Number(req.params.id);
+      const body = req.body;
+      const updateData: Record<string, any> = {};
+      if (body.title !== undefined) updateData.title = body.title;
+      if (body.description !== undefined) updateData.description = body.description;
+      if (body.date !== undefined) updateData.date = new Date(body.date);
+      if (body.location !== undefined) updateData.location = body.location;
+      if (body.imageUrl !== undefined) updateData.imageUrl = body.imageUrl;
+      if (body.externalUrl !== undefined) updateData.externalUrl = body.externalUrl;
+      const event = await storage.updateEvent(id, updateData);
+      if (!event) return res.status(404).json({ message: "Event not found" });
+      res.json(event);
+    } catch {
+      return res.status(500).json({ message: "Failed to update event" });
+    }
+  });
+
+  app.delete("/api/events/:id", async (req, res) => {
+    const deleted = await storage.deleteEvent(Number(req.params.id));
+    if (!deleted) return res.status(404).json({ message: "Event not found" });
+    res.json({ message: "Event deleted" });
+  });
+
   // Seed database on startup
   await storage.seed();
 

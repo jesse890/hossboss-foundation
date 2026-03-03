@@ -13,6 +13,8 @@ export interface IStorage {
   getEvents(): Promise<Event[]>;
   getEvent(id: number): Promise<Event | undefined>;
   createEvent(event: InsertEvent): Promise<Event>;
+  updateEvent(id: number, event: Partial<InsertEvent>): Promise<Event | undefined>;
+  deleteEvent(id: number): Promise<boolean>;
   getSponsors(): Promise<Sponsor[]>;
   seed(): Promise<void>;
 }
@@ -32,6 +34,16 @@ export class DatabaseStorage implements IStorage {
     return newEvent;
   }
 
+  async updateEvent(id: number, event: Partial<InsertEvent>): Promise<Event | undefined> {
+    const [updated] = await db.update(events).set(event).where(eq(events.id, id)).returning();
+    return updated;
+  }
+
+  async deleteEvent(id: number): Promise<boolean> {
+    const result = await db.delete(events).where(eq(events.id, id)).returning();
+    return result.length > 0;
+  }
+
   async getSponsors(): Promise<Sponsor[]> {
     return await db.select().from(sponsors);
   }
@@ -42,19 +54,12 @@ export class DatabaseStorage implements IStorage {
       // Seed Events
       await db.insert(events).values([
         {
-          title: "Jeff Conord Memorial Classic",
-          description: "Join us for our signature fundraising event, the Jeff Conord Memorial Classic. A day of golf, camaraderie, and supporting Veterans' mental health. All proceeds align with MCVET.",
-          date: new Date("2025-06-15T09:00:00"), // Future date example
-          location: "Maryland National Golf Club, Middletown, MD",
-          imageUrl: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b", // Golf course placeholder
-          externalUrl: "https://www.jcmc25.com",
-        },
-        {
-          title: "Veterans Day Gala",
-          description: "An evening to honor our heroes and celebrate the achievements of the Hoss Boss Foundation.",
-          date: new Date("2025-11-11T18:00:00"),
-          location: "Baltimore Marriott Waterfront",
-          imageUrl: "https://images.unsplash.com/photo-1511578314322-379afb476865", // Gala placeholder
+          title: "9th Annual Jeff Conord Memorial Classic",
+          description: "Join us for our signature fundraising event — the Ninth Annual Jeff Conord Memorial Classic. Friday, June 19th, 2026 at Bull Run Country Club, Haymarket VA. 4-person scramble with 9:00 AM shotgun start. Includes Chick-fil-A lunch, beverages, raffle, prizes, and awards reception with dinner. All proceeds benefit MCVET in Jeff's name.",
+          date: new Date("2026-06-19T09:00:00"),
+          location: "Bull Run Country Club",
+          imageUrl: "/assets/IMG_4277_1768183625522.jpeg",
+          externalUrl: "https://app.eventcaddy.com/events/cpt-jeffrey-howard-conord-memorial-classic-2026",
         },
       ]);
 
