@@ -6,6 +6,10 @@ import path from "path";
 
 const app = express();
 
+app.get("/healthz", (_req, res) => {
+  res.status(200).json({ status: "ok" });
+});
+
 app.use('/assets', express.static(path.resolve(process.cwd(), 'attached_assets')));
 const httpServer = createServer(app);
 
@@ -66,13 +70,17 @@ app.use((req, res, next) => {
   try {
     await registerRoutes(httpServer, app);
   } catch (err) {
+    console.error("Route registration failed:", err);
     log(`Warning: Route registration encountered an error: ${err}`, "startup");
   }
 
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
+    if (res.headersSent) {
+      return next(err);
+    }
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
-    log(`Error: ${message}`, "error");
+    console.error(`[error] ${message}`, err.stack || "");
     res.status(status).json({ message });
   });
 

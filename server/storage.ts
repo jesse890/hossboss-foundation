@@ -50,8 +50,17 @@ export class DatabaseStorage implements IStorage {
 
   async seed(): Promise<void> {
     const existingEvents = await this.getEvents();
-    if (existingEvents.length === 0) {
-      // Seed Events
+
+    const hasGala = existingEvents.some(e => e.title.toLowerCase().includes("gala"));
+    const hasOldTitle = existingEvents.some(e => e.title.includes("8th Annual") || (e.title.includes("Memorial") && !e.title.includes("9th Annual")));
+
+    if (hasGala || hasOldTitle) {
+      await db.delete(events);
+      console.log("Cleared stale event data");
+    }
+
+    const currentEvents = await this.getEvents();
+    if (currentEvents.length === 0) {
       await db.insert(events).values([
         {
           title: "9th Annual Captain Jeffery Howard Conord Memorial Classic",
@@ -62,8 +71,11 @@ export class DatabaseStorage implements IStorage {
           externalUrl: "https://app.eventcaddy.com/events/cpt-jeffrey-howard-conord-memorial-classic-2026",
         },
       ]);
+      console.log("Database seeded with current event data");
+    }
 
-      // Seed Sponsors
+    const existingSponsors = await this.getSponsors();
+    if (existingSponsors.length === 0) {
       await db.insert(sponsors).values([
         {
           name: "Patriot Construction",
@@ -84,7 +96,7 @@ export class DatabaseStorage implements IStorage {
           websiteUrl: "#",
         },
       ]);
-      console.log("Database seeded successfully");
+      console.log("Sponsors seeded successfully");
     }
   }
 }
