@@ -16,20 +16,26 @@ app.get("/api/healthz", (_req, res) => {
 });
 
 app.get("/", (_req, res, next) => {
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV !== "production") {
+    return next();
+  }
+  const candidates = [
+    typeof __dirname !== "undefined" ? path.resolve(__dirname, "public", "index.html") : null,
+    path.resolve(process.cwd(), "dist", "public", "index.html"),
+  ].filter(Boolean) as string[];
+
+  for (const filePath of candidates) {
     try {
-      const distIndex = path.resolve(process.cwd(), "dist", "public", "index.html");
-      if (fs.existsSync(distIndex)) {
-        return res.status(200).sendFile(distIndex, (err) => {
+      if (fs.existsSync(filePath)) {
+        return res.status(200).sendFile(filePath, (err) => {
           if (err && !res.headersSent) {
             res.status(200).send("OK");
           }
         });
       }
     } catch {}
-    return res.status(200).send("OK");
   }
-  next();
+  return res.status(200).send("OK");
 });
 
 app.use('/assets', express.static(path.resolve(process.cwd(), 'attached_assets')));
