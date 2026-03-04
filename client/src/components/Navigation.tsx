@@ -51,7 +51,7 @@ export function Navigation() {
             </div>
             <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer" data-testid="nav-register-tournament">
               <Button className="bg-accent hover:bg-accent/90 text-primary font-bold shadow-md hover:shadow-lg transition-all gap-2">
-                Register for 2026 Golf Tournament
+                Register / Sponsor
               </Button>
             </a>
           </div>
@@ -83,7 +83,7 @@ export function Navigation() {
             ))}
             <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer" className="block" data-testid="mobile-register-tournament">
               <Button className="w-full bg-accent hover:bg-accent/90 text-primary font-bold mt-4 gap-2">
-                Register for 2026 Golf Tournament
+                Register / Sponsor
               </Button>
             </a>
           </div>
