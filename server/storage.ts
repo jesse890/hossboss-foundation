@@ -59,6 +59,16 @@ export class DatabaseStorage implements IStorage {
       console.log("Cleared stale event data");
     }
 
+    const wrongTimeEvents = existingEvents.filter(e =>
+      e.title.includes("9th Annual") && e.date && new Date(e.date).getUTCHours() !== 9
+    );
+    for (const evt of wrongTimeEvents) {
+      await db.update(events)
+        .set({ date: new Date("2026-06-19T09:00:00") })
+        .where(eq(events.id, evt.id));
+      console.log(`Fixed event time for id=${evt.id} to 9:00 AM`);
+    }
+
     const currentEvents = await this.getEvents();
     if (currentEvents.length === 0) {
       await db.insert(events).values([
