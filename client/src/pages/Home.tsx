@@ -287,7 +287,7 @@ export default function Home() {
           >
             <p className="text-accent font-bold tracking-wider uppercase text-sm mb-4">Benefiting</p>
             <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-4" data-testid="text-mcvet-benefit">
-              Proceeds Benefit MCVET.
+              Proceeds benefit MCVET — Maryland Center for Veterans Education and Training — in Jeff's name.
             </h3>
             <div className="bg-white/10 rounded-xl p-6 mt-8 border border-white/20">
               <p className="text-white/90 text-lg leading-relaxed" data-testid="text-impact">
