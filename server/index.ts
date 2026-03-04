@@ -12,6 +12,10 @@ app.get("/healthz", (_req, res) => {
   res.status(200).json({ status: "ok" });
 });
 
+app.get("/api/healthz", (_req, res) => {
+  res.status(200).json({ status: "ok" });
+});
+
 app.get("/", (req, res, next) => {
   if (!appReady) {
     return res.status(200).send("Hoss Boss Foundation is running");
