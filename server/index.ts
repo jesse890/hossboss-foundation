@@ -3,10 +3,9 @@ import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
 import path from "path";
+import fs from "fs";
 
 const app = express();
-
-let appReady = false;
 
 app.get("/healthz", (_req, res) => {
   res.status(200).json({ status: "ok" });
@@ -16,11 +15,20 @@ app.get("/api/healthz", (_req, res) => {
   res.status(200).json({ status: "ok" });
 });
 
-app.get("/", (req, res, next) => {
-  if (!appReady) {
-    return res.status(200).send("Hoss Boss Foundation is running");
+app.get("/", (_req, res, next) => {
+  if (process.env.NODE_ENV === "production") {
+    try {
+      const distIndex = path.resolve(process.cwd(), "dist", "public", "index.html");
+      if (fs.existsSync(distIndex)) {
+        return res.status(200).sendFile(distIndex, (err) => {
+          if (err && !res.headersSent) {
+            res.status(200).send("OK");
+          }
+        });
+      }
+    } catch {}
+    return res.status(200).send("OK");
   }
-  res.on("close", () => {});
   next();
 });
 
@@ -107,7 +115,7 @@ httpServer.listen(
     const message = err.message || "Internal Server Error";
     console.error(`[error] ${req.method} ${req.path}: ${message}`, err.stack || "");
     if (req.path === "/" || req.path === "/healthz" || req.path === "/api/healthz") {
-      return res.status(200).send("Hoss Boss Foundation is running");
+      return res.status(200).send("OK");
     }
     const status = err.status || err.statusCode || 500;
     res.status(status).json({ message });
@@ -125,6 +133,5 @@ httpServer.listen(
     await setupVite(httpServer, app);
   }
 
-  appReady = true;
   log("Application fully initialized");
 })();
