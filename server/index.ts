@@ -20,6 +20,7 @@ app.get("/", (req, res, next) => {
   if (!appReady) {
     return res.status(200).send("Hoss Boss Foundation is running");
   }
+  res.on("close", () => {});
   next();
 });
 
@@ -99,13 +100,16 @@ httpServer.listen(
     log(`Warning: Route registration encountered an error: ${err}`, "startup");
   }
 
-  app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
+  app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     if (res.headersSent) {
       return next(err);
     }
-    const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
-    console.error(`[error] ${message}`, err.stack || "");
+    console.error(`[error] ${req.method} ${req.path}: ${message}`, err.stack || "");
+    if (req.path === "/" || req.path === "/healthz" || req.path === "/api/healthz") {
+      return res.status(200).send("Hoss Boss Foundation is running");
+    }
+    const status = err.status || err.statusCode || 500;
     res.status(status).json({ message });
   });
 
