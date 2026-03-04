@@ -1,0 +1,55 @@
+Re-engineer the "Our Sponsors" page to be polished and ready for fundraising, even if there are 0 sponsors.
+
+GOALS:
+- Remove all current sponsor cards (Patriot Construction, placeholders, broken images).
+- Make the page conversion-focused for donations/sponsorships.
+- Keep the look aligned to the existing navy/gold Hoss Boss design.
+
+REQUIRED CHANGES:
+
+1) Primary CTA
+- Update the "Become a Sponsor" button to link to:
+  https://app.eventcaddy.com/events/cpt-jeffrey-howard-conord-memorial-classic-2026
+- Open in new tab (target="_blank" rel="noopener noreferrer")
+
+2) Replace the current sponsor list with these sections (in this order):
+
+A) Sponsor Intro Section
+Title: "Sponsor the 2026 Jeff Conord Memorial Classic"
+Subtitle: "Your sponsorship directly supports veterans through the Hoss Boss Foundation and our beneficiary partner MCVET."
+Add 3 bullet points:
+- "Reach local veteran supporters and business leaders"
+- "Sponsor recognition before, during, and after the event"
+- "Funds go directly to mission impact"
+
+B) Sponsorship Tiers Grid (cards)
+Create 5 cards with names + sample benefits (no dollar amounts required unless easy):
+- Gold Sponsor
+  Benefits: "Premier logo placement", "Recognition at awards reception", "Featured on website and social"
+- Silver Sponsor
+  Benefits: "Logo placement", "Recognition at reception", "Website listing"
+- Bronze Sponsor
+  Benefits: "Website listing", "On-site signage"
+- Hole Sponsor
+  Benefits: "Signage at a tee box/green", "Website listing"
+- In-Kind Sponsor
+  Benefits: "Recognition for donated items/services", "Website listing"
+
+Each card should include a small "Sponsor via EventCaddy" button linking to the same EventCaddy URL (new tab).
+
+C) How Sponsorship Works (simple 3 steps)
+1. "Click Sponsor via EventCaddy"
+2. "Select sponsorship level or donate"
+3. "We follow up for logo + recognition details"
+
+D) Current Sponsors (dynamic list)
+- If there are sponsors in data, render them in a clean grid with logo (if available), name, and optional website link.
+- If there are NO sponsors, show a friendly empty state:
+  "Be the first to sponsor the 2026 event."
+
+3) Data / Code Behavior
+- Do NOT show broken image icons. If sponsor logo missing, show a clean placeholder (e.g., initials in a circle) or hide the image area.
+- Remove any hardcoded demo sponsors from seed data or frontend arrays.
+- Keep the page responsive and consistent with the rest of the site.
+
+After implementing, republish.
