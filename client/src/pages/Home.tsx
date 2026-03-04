@@ -3,6 +3,7 @@ import { ArrowRight, Trophy, Users, HeartHandshake, MapPin, Clock, Calendar, Che
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/SectionHeader";
+import { CountUpUSD } from "@/components/CountUpUSD";
 import golfGroupPhoto from "@assets/IMG_4277_1768183625522.jpeg";
 import jeffConordPhoto from "@assets/Jeff_Conord_1772572664422.jpg";
 
@@ -70,7 +71,7 @@ export default function Home() {
             <div className="w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center mx-auto mb-6 text-primary">
               <HeartHandshake className="w-8 h-8" />
             </div>
-            <h3 className="text-4xl font-bold text-primary mb-2" data-testid="text-total-raised">$110k+</h3>
+            <h3 className="text-4xl font-bold text-primary mb-2" data-testid="text-total-raised">$109k+</h3>
             <p className="text-muted-foreground font-medium">Raised for Veterans</p>
           </div>
           <div className="p-6 border-y md:border-y-0 md:border-x border-border/50">
@@ -107,7 +108,7 @@ export default function Home() {
               Why We Do This
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-10" data-testid="text-why-description">
-              The Hoss Boss Foundation was created to honor CPT Jeff Conord and support veterans facing PTSD, substance abuse, and the challenges of transition. Our annual Jeff Conord Memorial Classic raises funds for MCVET (Maryland Center for Veterans Education and Training). Over the past eight years, our community has raised over $110,000 for veterans — and we're building toward $200,000.
+              The Hoss Boss Foundation was created to honor CPT Jeff Conord and support veterans facing PTSD, substance abuse, and the challenges of transition. Our annual Jeff Conord Memorial Classic raises funds for MCVET (Maryland Center for Veterans Education and Training). Over the past eight years, our community has raised over $109,000 for veterans — and we're building toward $250,000.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer" data-testid="link-why-register">
@@ -286,14 +287,14 @@ export default function Home() {
           >
             <p className="text-accent font-bold tracking-wider uppercase text-sm mb-4">Benefiting</p>
             <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-4" data-testid="text-mcvet-benefit">
-              All benefits go to MCVET — Maryland Center for Veterans Education and Training — in Jeff's name.
+              Proceeds Benefit MCVET.
             </h3>
             <div className="bg-white/10 rounded-xl p-6 mt-8 border border-white/20">
               <p className="text-white/90 text-lg leading-relaxed" data-testid="text-impact">
-                Last year we donated <span className="font-bold text-accent">$9,000</span>; eight-year total over <span className="font-bold text-accent">$110,000</span>.
+                Last year we donated <span className="font-bold text-accent">$9,000</span>; eight-year total is <CountUpUSD value={109176.91} className="font-bold text-accent" />.
               </p>
               <p className="text-white text-xl font-display font-bold mt-3">
-                Goal: reach <span className="text-accent">$200,000</span>.
+                Goal: reach <span className="text-accent">$250,000</span>.
               </p>
             </div>
           </motion.div>
