@@ -90,6 +90,41 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="py-20 bg-primary/[0.03] border-y border-border/30" data-testid="section-why-we-do-this">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="inline-flex items-center gap-2 text-accent font-bold tracking-wider uppercase text-sm mb-4">
+              <div className="w-8 h-0.5 bg-accent" />
+              Our Purpose
+              <div className="w-8 h-0.5 bg-accent" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary mb-6" data-testid="text-why-title">
+              Why We Do This
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-10" data-testid="text-why-description">
+              The Hoss Boss Foundation was created to honor CPT Jeff Conord and support veterans facing PTSD, substance abuse, and the challenges of transition. Our annual Jeff Conord Memorial Classic raises funds for MCVET (Maryland Center for Veterans Education and Training). Over the past eight years, our community has raised over $110,000 for veterans — and we're building toward $200,000.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer" data-testid="link-why-register">
+                <Button size="lg" className="bg-accent text-primary font-bold text-lg h-14 px-8 rounded-full shadow-lg shadow-accent/20 w-full sm:w-auto">
+                  Register / Sponsor for 2026 <ExternalLink className="w-4 h-4 ml-2" />
+                </Button>
+              </a>
+              <a href="#jeff-story" data-testid="link-why-jeff-story">
+                <Button size="lg" variant="outline" className="border-primary/30 text-primary font-semibold text-lg h-14 px-8 rounded-full w-full sm:w-auto">
+                  Read Jeff's Story <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       <section className="py-24 bg-white" data-testid="section-tournament-details">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -265,7 +300,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 bg-secondary/30">
+      <section id="jeff-story" className="py-24 bg-secondary/30 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative">
