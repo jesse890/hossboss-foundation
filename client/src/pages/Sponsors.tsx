@@ -1,10 +1,18 @@
-import { useSponsors } from "@/hooks/use-sponsors";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Loader2, Home, Briefcase, Heart, Users, CheckCircle } from "lucide-react";
+import { ExternalLink, Home, Briefcase, Heart, Users, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import zetaLogo from "@assets/Screenshot_2026-04-30_at_9.27.00_PM_1777600143514.png";
+import dsLogo from "@assets/New_DS_Transparent_(1)_1777600134853.png";
+import pdiLogo from "@assets/IMG_3995_1777600134853.jpeg";
 
 const EVENTCADDY_URL = "https://app.eventcaddy.com/events/cpt-jeffrey-howard-conord-memorial-classic-2026";
+
+const CURRENT_SPONSORS = [
+  { id: 1, name: "Zeta Associates", logo: zetaLogo, websiteUrl: "" },
+  { id: 2, name: "Disruptive Solutions", logo: dsLogo, websiteUrl: "" },
+  { id: 3, name: "PDI", logo: pdiLogo, websiteUrl: "" },
+];
 
 const impactItems = [
   { icon: Home, label: "Housing Support", desc: "Helps veterans access transitional housing" },
@@ -58,26 +66,6 @@ const steps = [
 ];
 
 export default function Sponsors() {
-  const { data: sponsors, isLoading, error } = useSponsors();
-
-  if (isLoading) {
-    return (
-      <div className="min-h-[50vh] flex items-center justify-center" data-testid="loading-sponsors">
-        <Loader2 className="w-8 h-8 text-primary animate-spin" />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-[50vh] flex items-center justify-center text-destructive" data-testid="error-sponsors">
-        Error loading sponsors.
-      </div>
-    );
-  }
-
-  const placeholders = ["Patriot Construction", "Liberty Financial", "Maryland Motors"];
-  const validSponsors = sponsors?.filter(s => !placeholders.includes(s.name)) || [];
 
   return (
     <div className="min-h-screen pb-24">
@@ -220,58 +208,28 @@ export default function Sponsors() {
             <div className="h-px bg-border flex-1" />
           </div>
 
-          {validSponsors.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {validSponsors.map((sponsor, idx) => (
-                <motion.div
-                  key={sponsor.id}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="bg-white p-8 rounded-xl border border-border shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center h-full"
-                  data-testid={`card-sponsor-${sponsor.id}`}
-                >
-                  <div className="h-24 w-full flex items-center justify-center mb-4 p-4 bg-secondary/30 rounded-lg">
-                    {sponsor.logoUrl && !sponsor.logoUrl.includes("placeholder") ? (
-                      <img
-                        src={sponsor.logoUrl}
-                        alt={sponsor.name}
-                        className="max-h-full max-w-full object-contain"
-                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                      />
-                    ) : (
-                      <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                        <span className="text-xl font-bold text-primary/40 font-display">
-                          {sponsor.name.split(" ").map(w => w[0]).join("").substring(0, 2)}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                  <h4 className="text-lg font-bold text-primary mb-2">{sponsor.name}</h4>
-                  {sponsor.websiteUrl && sponsor.websiteUrl !== "#" && (
-                    <a
-                      href={sponsor.websiteUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-primary transition-colors"
-                      data-testid={`link-sponsor-website-${sponsor.id}`}
-                    >
-                      Visit Website <ExternalLink className="w-3 h-3" />
-                    </a>
-                  )}
-                </motion.div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-16 bg-secondary/30 rounded-2xl" data-testid="empty-sponsors">
-              <p className="text-lg text-muted-foreground mb-6">Be the first to sponsor the 2026 event.</p>
-              <a href={EVENTCADDY_URL} target="_blank" rel="noopener noreferrer" data-testid="link-sponsor-empty">
-                <Button className="bg-accent text-primary font-bold hover:bg-accent/90">
-                  Become a Sponsor
-                </Button>
-              </a>
-            </div>
-          )}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            {CURRENT_SPONSORS.map((sponsor, idx) => (
+              <motion.div
+                key={sponsor.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-white p-8 rounded-xl border border-border shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center"
+                data-testid={`card-sponsor-${sponsor.id}`}
+              >
+                <div className="h-28 w-full flex items-center justify-center mb-4 p-4 bg-secondary/20 rounded-lg">
+                  <img
+                    src={sponsor.logo}
+                    alt={sponsor.name}
+                    className="max-h-full max-w-full object-contain"
+                  />
+                </div>
+                <h4 className="text-lg font-bold text-primary">{sponsor.name}</h4>
+              </motion.div>
+            ))}
+          </div>
         </section>
       </div>
     </div>
