@@ -85,29 +85,46 @@ export class DatabaseStorage implements IStorage {
     }
 
     const existingSponsors = await this.getSponsors();
-    if (existingSponsors.length === 0) {
-      await db.insert(sponsors).values([
-        {
-          name: "Patriot Construction",
-          tier: "Gold",
-          logoUrl: "https://via.placeholder.com/150?text=Patriot+Construction",
-          websiteUrl: "#",
-        },
-        {
-          name: "Liberty Financial",
-          tier: "Silver",
-          logoUrl: "https://via.placeholder.com/150?text=Liberty+Financial",
-          websiteUrl: "#",
-        },
-        {
-          name: "Maryland Motors",
-          tier: "Bronze",
-          logoUrl: "https://via.placeholder.com/150?text=Maryland+Motors",
-          websiteUrl: "#",
-        },
-      ]);
-      console.log("Sponsors seeded successfully");
+    const placeholderNames = ["Patriot Construction", "Liberty Financial", "Maryland Motors"];
+    const hasPlaceholders = existingSponsors.some(s => placeholderNames.includes(s.name));
+    if (hasPlaceholders) {
+      for (const name of placeholderNames) {
+        const found = existingSponsors.find(s => s.name === name);
+        if (found) await db.delete(sponsors).where(eq(sponsors.id, found.id));
+      }
+      console.log("Removed placeholder sponsors");
     }
+
+    const currentSponsors = await this.getSponsors();
+    const realSponsorNames = ["Zeta Associates", "Disruptive Solutions", "PDI"];
+    const missingSponsors = realSponsorNames.filter(
+      n => !currentSponsors.some(s => s.name === n)
+    );
+    if (missingSponsors.length > 0) {
+      const toInsert = [
+        {
+          name: "Zeta Associates",
+          tier: "Gold",
+          logoUrl: "/assets/Screenshot_2026-04-30_at_9.27.00_PM_1777598963165.png",
+          websiteUrl: "#",
+        },
+        {
+          name: "Disruptive Solutions",
+          tier: "Gold",
+          logoUrl: "/assets/New_DS_Transparent_(1)_1777598950619.png",
+          websiteUrl: "#",
+        },
+        {
+          name: "PDI",
+          tier: "Gold",
+          logoUrl: "/assets/IMG_3995_1777598950619.jpeg",
+          websiteUrl: "#",
+        },
+      ].filter(s => missingSponsors.includes(s.name));
+      await db.insert(sponsors).values(toInsert);
+      console.log("Seeded real sponsor data");
+    }
+
   }
 }
 

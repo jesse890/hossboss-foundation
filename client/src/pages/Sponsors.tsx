@@ -76,7 +76,8 @@ export default function Sponsors() {
     );
   }
 
-  const validSponsors = sponsors?.filter(s => s.name !== "Patriot Construction" && s.name !== "Liberty Financial" && s.name !== "Maryland Motors") || [];
+  const placeholders = ["Patriot Construction", "Liberty Financial", "Maryland Motors"];
+  const validSponsors = sponsors?.filter(s => !placeholders.includes(s.name)) || [];
 
   return (
     <div className="min-h-screen pb-24">
