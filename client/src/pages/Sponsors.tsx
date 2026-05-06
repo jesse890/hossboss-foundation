@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import zetaLogo from "@assets/Screenshot_2026-04-30_at_9.27.00_PM_1777600143514.png";
 import dsLogo from "@assets/New_DS_Transparent_(1)_1777600134853.png";
 import pdiLogo from "@assets/IMG_3995_1777600134853.jpeg";
+import zenithLogo from "@assets/ZenithFlowLogo2026_1778032641880.png";
 
 const EVENTCADDY_URL = "https://app.eventcaddy.com/events/cpt-jeffrey-howard-conord-memorial-classic-2026";
 
@@ -12,6 +13,7 @@ const CURRENT_SPONSORS = [
   { id: 1, name: "Zeta Associates", logo: zetaLogo, websiteUrl: "" },
   { id: 2, name: "Disruptive Solutions", logo: dsLogo, websiteUrl: "" },
   { id: 3, name: "PDI", logo: pdiLogo, websiteUrl: "" },
+  { id: 4, name: "ZenithFlow", logo: zenithLogo, websiteUrl: "" },
 ];
 
 const impactItems = [
